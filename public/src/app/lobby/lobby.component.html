@@ -1,0 +1,15 @@
+<mat-toolbar>
+    <mat-toolbar-row>
+        <span>Nerds Con Amigos</span>
+        <span class="fill-remaining-space"></span>
+        <span>Welcome, {{user.username }}</span>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<button [routerLink]="['/create_game']" mat-button>Create Game</button>
+
+<mat-card *ngFor="let game of games">
+    {{game._id}}
+    <button [routerLink]="['/game', game._id]" mat-button>Go to Game</button>
+    <button (click)="deleteGame(game._id)">Delete</button>
+</mat-card>

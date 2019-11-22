@@ -1,0 +1,70 @@
+<div class="container-fluid">       
+    <mat-toolbar>
+        <mat-toolbar-row>            
+            <span>Judge: {{judging}} </span>
+           
+            <span class="fill-remaining-space"></span>
+            <span> Round: {{game.round}}</span>
+            <button (click)="lobby()" mat-button>Lobby</button>
+            <div *ngIf="game.players > players.length">
+                <!-- If player has joined game or enough playes have joined game don't show this button -->
+                <button *ngIf="players.includes(user.username)==false;" (click)="join()" mat-button>JoinGame</button>
+            </div>
+        
+        </mat-toolbar-row>
+    </mat-toolbar>
+    <div class="row">
+        <div class="col-6">
+            <!-- Judge won't have an option to submit -->
+            <div class="container" *ngIf="user.username != judging; else isJudging">
+                <form (submit)="submit()">
+                    <div class="create-container">                        
+                            <mat-form-field class="example-full-width">
+                                <span>Title</span>
+                                <input matInput name="title" [(ngModel)]="movie.title" type="text">
+                            </mat-form-field>
+                        <mat-form-field class="example-full-width">
+                            <span>TagLine</span>
+                            <input matInput name="tag_line" [(ngModel)]="movie.tag_line" type="text">
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width">
+                            <span>Plot</span>                          
+                                <textarea name="plot" [(ngModel)]="movie.plot" matInput ></textarea>                        
+                        </mat-form-field>
+                        <button type="submit" mat-button>Submit</button>
+                    </div>
+                </form>
+            </div>
+            <ng-template #isJudging>
+                <button mat-button (click)="getTitle(game._id)">Generate Title</button> 
+                <span>{{movie.title}}</span>          
+            </ng-template>
+        </div>
+        <div class="col-6">
+            <p *ngFor="let score of game.scores">
+                <span>{{score.player}}: {{score.score}}</span>
+            </p>
+        </div>
+    </div>
+    <div class="row">       
+        <div class="col-6">
+            <div *ngFor="let submission of game.submissions; index as i">
+                <p class="lead" *ngIf="submission.selected == true">Round {{submission.round}} winner!</p>
+                <mat-card >               
+                    <mat-card-title>{{submission.title}}</mat-card-title>
+                    <mat-card-subtitle>Tagline: {{submission.tag_line}}</mat-card-subtitle>
+                    <mat-card-content>Plot: {{submission.plot}}</mat-card-content>
+                    <mat-card-content>Submitted By: {{submission.player}}</mat-card-content>
+                    <button mat-button *ngIf="user.username == judging" (click)="selectMovie(i)">Select Movie</button>
+                </mat-card>
+            </div>       
+       
+        </div>
+        <div class="col-6">
+
+        </div>
+    </div>
+</div>
+
+
+

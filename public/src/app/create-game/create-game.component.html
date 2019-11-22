@@ -1,0 +1,23 @@
+
+<div class="container">
+    <form (submit)="createGame()">
+        <div class="create-container">
+            
+            
+            
+            <mat-form-field class="example-full-width">
+                <span>Players</span>
+                <input matInput name="players" [(ngModel)]="game.players" type="number" >
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <span>Rounds</span>
+                <input matInput name="rounds" [(ngModel)]="game.rounds" type="number">
+            </mat-form-field>
+            <button type="submit" mat-button>Submit</button>
+        </div>
+    </form>
+
+ 
+    
+</div>
+

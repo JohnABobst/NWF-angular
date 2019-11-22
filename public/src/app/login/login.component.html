@@ -1,0 +1,31 @@
+<div class="container">
+    <span>Login</span>
+    <form (submit)="loginUser()">
+        <div class="create-container">         
+            <mat-form-field class="example-full-width">
+                <span>Username</span>
+                <input name="username" matInput [(ngModel)]="user.username" type="text" >
+            </mat-form-field> 
+            <met-form-field>
+                <button type="submit" mat-button>Submit</button>
+            </met-form-field>
+        </div>        
+    </form>
+</div>
+<div class="container">
+    <span>Register</span>
+    <form (submit)="registerUser()">
+        
+        <div class="create-container">
+            <mat-form-field class="example-full-width">
+                <span>Username</span>
+                <input name="username" matInput [(ngModel)]="register.username" type="text">
+            </mat-form-field>
+            <met-form-field>
+                <button type="submit" mat-button>Submit</button>
+            </met-form-field>
+        </div>
+
+    </form>
+</div>
+
